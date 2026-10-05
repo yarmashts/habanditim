@@ -13,8 +13,9 @@
   <style>
     :root {
       --primary-orange: #FF5500;
-      --glow-orange: rgba(255, 85, 0, 0.6);
-      --card-bg: rgba(18, 18, 22, 0.78);
+      --fire-orange: #FF8800;
+      --glow-orange: rgba(255, 85, 0, 0.55);
+      --card-bg: rgba(16, 16, 20, 0.82);
       --card-border: rgba(255, 110, 20, 0.35);
     }
 
@@ -31,217 +32,223 @@
       justify-content: center;
       align-items: center;
       color: #fff;
-      padding: 30px 16px;
+      padding: 24px 14px;
       position: relative;
-      background-color: #0d0d0f;
+      background-color: #0b0b0e;
+      overflow-x: hidden;
     }
 
-    /* רקע מלא עם תמונת הבאנר המקורית */
+    /* רקע מגדל הרמקולים הענק */
     .bg-image {
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
-      background-image: url('באנר בנדיטים יוטיוב.jpeg');
+      background-image: url('רמקול ענק.jpeg');
       background-size: cover;
-      background-position: center;
+      background-position: center top;
       background-repeat: no-repeat;
+      filter: blur(12px) brightness(0.4) saturate(1.2);
+      transform: scale(1.08);
       z-index: -2;
-      transform: scale(1.05); /* מונע שוליים לבנים במעברים */
     }
 
-    /* שכבת כהות כדי שהטקסט והכפתורים יהיו קריאים וחדים */
     .bg-overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: radial-gradient(circle at center, rgba(10, 10, 14, 0.72) 0%, rgba(5, 5, 8, 0.92) 100%);
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
+      background: radial-gradient(circle at center, rgba(10, 10, 14, 0.6) 0%, rgba(5, 5, 8, 0.94) 100%);
       z-index: -1;
     }
 
-    /* קונטיינר מרכזי */
+    /* הפאנל המרכזי */
     .card-panel {
       width: 100%;
-      max-width: 520px;
-      background: rgba(15, 15, 20, 0.7);
+      max-width: 460px;
+      background: var(--card-bg);
       border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 28px;
-      padding: 34px 24px 28px;
-      box-shadow: 0 15px 45px rgba(0, 0, 0, 0.7), 0 0 35px rgba(255, 85, 0, 0.2);
+      border-radius: 26px;
+      padding: 20px 18px 18px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85), 0 0 35px rgba(255, 85, 0, 0.25);
       display: flex;
       flex-direction: column;
       align-items: center;
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
     }
 
-    /* לוגו מרכזי */
-    .logo-container {
+    /* מסגרת תמונת הרמקול הענק בראש הדף */
+    .hero-poster-frame {
+      width: 100%;
+      max-height: 220px;
+      border-radius: 18px;
+      overflow: hidden;
       position: relative;
-      width: 130px;
-      height: 130px;
-      margin-bottom: 16px;
+      border: 2px solid var(--primary-orange);
+      box-shadow: 0 8px 25px rgba(255, 85, 0, 0.4);
+      margin-bottom: 14px;
+      background-color: #000;
     }
 
-    .logo-img {
+    .hero-poster-frame img {
       width: 100%;
       height: 100%;
-      border-radius: 50%;
       object-fit: cover;
+      object-position: center 30%;
       display: block;
-      border: 3px solid #ff5500;
-      box-shadow: 0 0 25px var(--glow-orange), 0 0 50px rgba(255, 50, 0, 0.35);
-      animation: logoPulse 3s infinite alternate;
+      filter: contrast(1.1) saturate(1.15);
+      transition: transform 0.4s ease;
     }
 
-    @keyframes logoPulse {
-      0% { transform: scale(1); box-shadow: 0 0 20px rgba(255, 85, 0, 0.5); }
-      100% { transform: scale(1.04); box-shadow: 0 0 35px rgba(255, 120, 0, 0.85); }
+    .hero-poster-frame:hover img {
+      transform: scale(1.04);
     }
 
-    /* כותרות */
+    .poster-glow {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 45%;
+      background: linear-gradient(to top, rgba(16, 16, 20, 0.95), transparent);
+      pointer-events: none;
+    }
+
+    /* כותרות ותגיות */
     .brand-title {
       font-family: 'Rubik', sans-serif;
-      font-size: 34px;
+      font-size: 28px;
       font-weight: 900;
       letter-spacing: -0.5px;
       background: linear-gradient(180deg, #FFFFFF 15%, #FFA86B 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      text-shadow: 0 3px 15px rgba(255, 85, 0, 0.4);
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
 
     .badge {
       display: inline-block;
-      padding: 5px 16px;
-      font-size: 13px;
+      padding: 3px 12px;
+      font-size: 11.5px;
       font-weight: 800;
-      letter-spacing: 0.5px;
       color: #fff;
       background: linear-gradient(90deg, #FF5500, #E62E00);
-      border-radius: 20px;
-      box-shadow: 0 3px 15px rgba(255, 85, 0, 0.5);
-      margin-bottom: 12px;
+      border-radius: 16px;
+      box-shadow: 0 2px 10px rgba(255, 85, 0, 0.4);
+      margin-bottom: 8px;
     }
 
     .brand-desc {
-      font-size: 14.5px;
-      color: #E2E2EA;
+      font-size: 13px;
+      color: #D6D6E2;
       text-align: center;
-      line-height: 1.6;
-      margin-bottom: 24px;
-      max-width: 90%;
+      line-height: 1.45;
+      margin-bottom: 16px;
     }
 
-    /* קישורים */
+    /* רשימת הכפתורים */
     .links-list {
       width: 100%;
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 10px;
     }
 
     .link-item {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 16px 20px;
-      border-radius: 16px;
+      padding: 12px 16px;
+      border-radius: 14px;
       text-decoration: none;
       color: #fff;
-      background: var(--card-bg);
+      background: rgba(24, 24, 30, 0.85);
       border: 1px solid var(--card-border);
-      transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transition: all 0.22s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       position: relative;
-      overflow: hidden;
     }
 
     .link-item:hover {
-      transform: translateY(-4px) scale(1.01);
+      transform: translateY(-2px);
       border-color: var(--primary-orange);
-      background: rgba(30, 30, 38, 0.95);
-      box-shadow: 0 10px 25px rgba(255, 85, 0, 0.35);
+      background: rgba(35, 35, 45, 0.95);
+      box-shadow: 0 6px 20px rgba(255, 85, 0, 0.3);
     }
 
-    /* הדגשה ליוטיוב */
+    /* הדגשת יוטיוב כערוץ מפתח */
     .link-item.featured {
-      background: linear-gradient(135deg, rgba(255, 85, 0, 0.35), rgba(25, 25, 32, 0.9));
-      border: 1.5px solid rgba(255, 110, 20, 0.8);
-      box-shadow: 0 6px 20px rgba(255, 85, 0, 0.3);
+      background: linear-gradient(135deg, rgba(255, 85, 0, 0.35), rgba(28, 28, 36, 0.9));
+      border: 1.5px solid rgba(255, 110, 20, 0.75);
     }
 
     .link-item.featured::after {
       content: 'ערוץ ראשי';
       position: absolute;
-      top: 10px;
-      left: 14px;
-      font-size: 10.5px;
+      top: 7px;
+      left: 12px;
+      font-size: 9.5px;
       font-weight: 900;
       color: #fff;
       background: #FF0000;
-      padding: 2px 8px;
-      border-radius: 6px;
-      box-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+      padding: 1px 6px;
+      border-radius: 4px;
+      box-shadow: 0 0 8px rgba(255, 0, 0, 0.7);
     }
 
     .item-right {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 12px;
     }
 
     .item-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 24px;
+      font-size: 20px;
       background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       flex-shrink: 0;
     }
 
-    .fa-youtube { color: #FF2B2B; text-shadow: 0 0 15px rgba(255, 43, 43, 0.6); }
-    .fa-instagram { color: #E1306C; text-shadow: 0 0 15px rgba(225, 48, 108, 0.5); }
-    .fa-tiktok { color: #00F2FE; text-shadow: 0 0 15px rgba(0, 242, 254, 0.5); }
-    .fa-facebook-f { color: #1877F2; text-shadow: 0 0 15px rgba(24, 119, 242, 0.5); }
+    .fa-youtube { color: #FF2B2B; text-shadow: 0 0 12px rgba(255, 43, 43, 0.6); }
+    .fa-instagram { color: #E1306C; text-shadow: 0 0 12px rgba(225, 48, 108, 0.5); }
+    .fa-tiktok { color: #00F2FE; text-shadow: 0 0 12px rgba(0, 242, 254, 0.5); }
+    .fa-facebook-f { color: #1877F2; text-shadow: 0 0 12px rgba(24, 119, 242, 0.5); }
 
     .item-text h3 {
-      font-size: 16.5px;
+      font-size: 14.5px;
       font-weight: 800;
       color: #fff;
-      margin-bottom: 2px;
+      margin-bottom: 1px;
     }
 
     .item-text p {
-      font-size: 12.5px;
-      color: #C0C0D0;
+      font-size: 11.5px;
+      color: #B2B2C2;
     }
 
     .item-arrow {
-      color: #888;
-      font-size: 15px;
-      transition: transform 0.2s ease, color 0.2s ease;
-      margin-left: 4px;
+      color: #777;
+      font-size: 13px;
+      transition: color 0.2s, transform 0.2s;
     }
 
     .link-item:hover .item-arrow {
       color: var(--primary-orange);
-      transform: translateX(-5px);
+      transform: translateX(-4px);
     }
 
     footer {
-      margin-top: 24px;
-      font-size: 12.5px;
-      color: #999;
+      margin-top: 14px;
+      font-size: 11px;
+      color: #888;
       text-align: center;
     }
 
@@ -253,30 +260,30 @@
 </head>
 <body>
 
-  <!-- שכבות הרקע -->
+  <!-- תמונת הרקע של הרמקולים עם טשטוש עמוק -->
   <div class="bg-image"></div>
   <div class="bg-overlay"></div>
 
   <!-- הפאנל המרכזי -->
   <div class="card-panel">
     
-    <!-- לוגו הבנדיטים -->
-    <div class="logo-container">
-      <img src="לוגו עגול - בנדיטים.jpeg" alt="לוגו הבנדיטים" class="logo-img">
+    <!-- פוסטר מגדל הרמקולים בתוך הכרטיס -->
+    <div class="hero-poster-frame">
+      <img src="רמקול ענק.jpeg" alt="הבנדיטים רמקול ענק">
+      <div class="poster-glow"></div>
     </div>
 
-    <!-- כותרת ופרטים -->
     <h1 class="brand-title">הבנדיטים</h1>
     <div class="badge">🎸 תחרות הלהקות של ישראל 🎸</div>
     <p class="brand-desc">
       ביצועים מקוריים • 4 שופטים • והצבעת הקהל ביוטיוב!<br>
-      הצטרפו לקהילה, האזינו לשירים ובחרו את הלהקה שלכם 👇
+      הצטרפו, צפו והצביעו ללהקה שלכם 👇
     </p>
 
-    <!-- רשימת הכפתורים -->
+    <!-- כל 4 הכפתורים נגישים ומסודרים -->
     <div class="links-list">
 
-      <!-- YouTube -->
+      <!-- 1. YouTube -->
       <a href="https://www.youtube.com/channel/UCflnej09MoRsVZLYzpao71A" target="_blank" rel="noopener noreferrer" class="link-item featured">
         <div class="item-right">
           <div class="item-icon">
@@ -290,7 +297,7 @@
         <i class="fa-solid fa-chevron-left item-arrow"></i>
       </a>
 
-      <!-- Instagram -->
+      <!-- 2. Instagram -->
       <a href="https://www.instagram.com/banditim26?utm_source=qr&stkn=N3MyZmh0dWVwcjBm" target="_blank" rel="noopener noreferrer" class="link-item">
         <div class="item-right">
           <div class="item-icon">
@@ -304,7 +311,7 @@
         <i class="fa-solid fa-chevron-left item-arrow"></i>
       </a>
 
-      <!-- TikTok -->
+      <!-- 3. TikTok -->
       <a href="https://www.tiktok.com/@banditim26?_r=1&_t=ZS-9AIhjkp6xD2" target="_blank" rel="noopener noreferrer" class="link-item">
         <div class="item-right">
           <div class="item-icon">
@@ -315,3 +322,30 @@
             <p>קטעי שיפוט ויראליים והסאונדים החמים</p>
           </div>
         </div>
+        <i class="fa-solid fa-chevron-left item-arrow"></i>
+      </a>
+
+      <!-- 4. Facebook -->
+      <a href="https://www.facebook.com/share/18c212Lfn6/" target="_blank" rel="noopener noreferrer" class="link-item">
+        <div class="item-right">
+          <div class="item-icon">
+            <i class="fa-brands fa-facebook-f"></i>
+          </div>
+          <div class="item-text">
+            <h3>עמוד הפייסבוק</h3>
+            <p>דיונים, קהילת הרוק והודעות ההפקה</p>
+          </div>
+        </div>
+        <i class="fa-solid fa-chevron-left item-arrow"></i>
+      </a>
+
+    </div>
+
+    <footer>
+      &copy; 2026 <span>הבנדיטים</span> • כל הזכויות שמורות להפקה
+    </footer>
+
+  </div>
+
+</body>
+</html>
