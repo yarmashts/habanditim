@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>הבנדיטים | תחרות הלהקות של ישראל</title>
+  
+  <!-- FontAwesome לאייקונים -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- גופן Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary-orange: #FF5E00;
+      --secondary-orange: #FF8533;
+      --dark-bg: #121214;
+      --card-bg: #1C1C20;
+      --border-color: #2F2F38;
+      --text-white: #FFFFFF;
+      --text-gray: #B0B0B8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Assistant', sans-serif;
+    }
+
+    body {
+      background-color: var(--dark-bg);
+      color: var(--text-white);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      overflow-x: hidden;
+      padding-bottom: 30px;
+    }
+
+    /* באנר עליון רחב */
+    .banner-container {
+      width: 100%;
+      max-width: 600px;
+      height: 160px;
+      overflow: hidden;
+      position: relative;
+      border-bottom: 2px solid var(--primary-orange);
+      box-shadow: 0 4px 20px rgba(255, 94, 0, 0.2);
+    }
+
+    .banner-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 520px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 16px;
+      margin-top: -55px; /* מעלה את הלוגו מעל הבאנר */
+      z-index: 1;
+    }
+
+    /* לוגו מותג */
+    .profile-section {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .logo-wrapper {
+      position: relative;
+      width: 110px;
+      height: 110px;
+      margin: 0 auto 12px;
+      border-radius: 50%;
+      padding: 3px;
+      background: linear-gradient(135deg, var(--primary-orange), #ff2200);
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.8), 0 0 15px rgba(255, 94, 0, 0.5);
+    }
+
+    .logo-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      background-color: #000;
+    }
+
+    .title {
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      margin-bottom: 4px;
+      background: linear-gradient(90deg, #fff, #ffe2cc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      font-size: 15px;
+      color: var(--primary-orange);
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+    }
+
+    .bio {
+      font-size: 14px;
+      color: var(--text-gray);
+      line-height: 1.5;
+      max-width: 90%;
+      margin: 0 auto;
+    }
+
+    /* רשימת הקישורים */
+    .links-list {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .link-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 14px 18px;
+      text-decoration: none;
+      color: var(--text-white);
+      transition: all 0.25s ease-in-out;
+    }
+
+    .link-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--primary-orange);
+      box-shadow: 0 6px 20px rgba(255, 94, 0, 0.25);
+      background-color: #24242b;
+    }
+
+    /* הדגשה לקישור הראשי */
+    .link-card.highlight {
+      background: linear-gradient(135deg, rgba(255, 94, 0, 0.15), rgba(28, 28, 32, 1));
+      border-color: rgba(255, 94, 0, 0.5);
+    }
+
+    .card-content {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .card-icon {
+      font-size: 22px;
+      width: 42px;
+      height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      background-color: rgba(255, 255, 255, 0.05);
+      flex-shrink: 0;
+    }
+
+    .fa-youtube { color: #FF0000; }
+    .fa-instagram { color: #E1306C; }
+    .fa-facebook-f { color: #1877F2; }
+    .fa-tiktok { color: #00F2FE; }
+
+    .card-text h3 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .card-text p {
+      font-size: 12px;
+      color: var(--text-gray);
+    }
+
+    .card-arrow {
+      color: var(--text-gray);
+      font-size: 13px;
+    }
+
+    footer {
+      margin-top: 30px;
+      text-align: center;
+      font-size: 13px;
+      color: #666;
+    }
+
+    footer span {
+      color: var(--primary-orange);
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- באנר עליון -->
+  <div class="banner-container">
+    <img src="באנר בנדיטים.jpeg" alt="באנר הבנדיטים" class="banner-img">
+  </div>
+
+  <div class="container">
+    
+    <!-- פרופיל ולוגו -->
+    <div class="profile-section">
+      <div class="logo-wrapper">
+        <img src="לוגו עגול - בנדיטים.jpeg" alt="לוגו הבנדיטים" class="logo-img">
+      </div>
+      <h1 class="title">הבנדיטים</h1>
+      <div class="subtitle">תחרות הלהקות של ישראל</div>
+      <p class="bio">
+        ביצועים מקוריים • 4 שופטים • והצבעת הקהל ביוטיוב.<br>
+        הצטרפו לקהילה והצביעו ללהקה שלכם!
+      </p>
+    </div>
+
+    <!-- רשימת הקישורים -->
+    <div class="links-list">
+
+      <!-- YouTube -->
+      <a href="https://www.youtube.com/channel/UCflnej09MoRsVZLYzpao71A" target="_blank" rel="noopener noreferrer" class="link-card highlight">
+        <div class="card-content">
+          <div class="card-icon">
+            <i class="fa-brands fa-youtube"></i>
+          </div>
+          <div class="card-text">
+            <h3>ערוץ היוטיוב הרשמי</h3>
+            <p>לצפייה בפרקים המלאים, הביצועים והצבעות</p>
+          </div>
+        </div>
+        <i class="fa-solid fa-chevron-left card-arrow"></i>
+      </a>
+
+      <!-- Instagram -->
+      <a href="https://www.instagram.com/banditim26?utm_source=qr&stkn=N3MyZmh0dWVwcjBm" target="_blank" rel="noopener noreferrer" class="link-card">
+        <div class="card-content">
+          <div class="card-icon">
+            <i class="fa-brands fa-instagram"></i>
+          </div>
+          <div class="card-text">
+            <h3>אינסטגרם | banditim26@</h3>
+            <p>רגעים מאחורי הקלעים, רילס ועדכונים חיים</p>
+          </div>
+        </div>
+        <i class="fa-solid fa-chevron-left card-arrow"></i>
+      </a>
+
+      <!-- TikTok -->
+      <a href="https://www.tiktok.com/@banditim26?_r=1&_t=ZS-9AIhjkp6xD2" target="_blank" rel="noopener noreferrer" class="link-card">
+        <div class="card-content">
+          <div class="card-icon">
+            <i class="fa-brands fa-tiktok"></i>
+          </div>
+          <div class="card-text">
+            <h3>טיקטוק | banditim26@</h3>
+            <p>קטעי שיפוט ויראליים והסאונדים החמים</p>
+          </div>
+        </div>
+        <i class="fa-solid fa-chevron-left card-arrow"></i>
+      </a>
+
+      <!-- Facebook -->
+      <a href="https://www.facebook.com/share/18c212Lfn6/" target="_blank" rel="noopener noreferrer" class="link-card">
+        <div class="card-content">
+          <div class="card-icon">
+            <i class="fa-brands fa-facebook-f"></i>
+          </div>
+          <div class="card-text">
+            <h3>עמוד הפייסבוק</h3>
+            <p>דיונים, קהילת חובבי רוק והודעות ההפקה</p>
+          </div>
+        </div>
+        <i class="fa-solid fa-chevron-left card-arrow"></i>
+      </a>
+
+    </div>
+
+    <!-- פוטר -->
+    <footer>
+      &copy; 2026 <span>הבנדיטים</span>. כל הזכויות שמורות להפקה.
+    </footer>
+
+  </div>
+
+</body>
+</html>
